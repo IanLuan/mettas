@@ -24,4 +24,4 @@ const TransactionSchema = new Schema({
   }
 });
 
-mongoose.model("Transaction", MettaSchema);
+mongoose.model("Transaction", TransactionSchema);

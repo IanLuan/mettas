@@ -15,8 +15,8 @@ mongoose.connect(
   { useNewUrlParser: true, useUnifiedTopology: true }
 );
 
-requireDir('./src/app/models');
+requireDir('./models');
 
-app.use('/mettas-api', require('./routes'));
+app.use('/');
 
 app.listen(3001);

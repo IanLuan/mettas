@@ -27,4 +27,4 @@ const InviteSchema = new Schema({
   }
 });
 
-mongoose.model("Invite", MettaSchema);
+mongoose.model("Invite", InviteSchema);
