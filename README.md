@@ -1,5 +1,5 @@
 # mettas-backend
-The backend for Mettas app
+The backend for Mettas app.
 
 ### Made with
 - NodeJs
