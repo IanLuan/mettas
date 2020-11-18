@@ -17,6 +17,7 @@ mongoose.connect(
 
 requireDir('./models');
 
-app.use('/');
+const routes = require("./api/index");
+app.use(routes);
 
 app.listen(3001);
