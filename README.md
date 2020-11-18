@@ -2,7 +2,7 @@
 The backend for Mettas app.
 
 ### Made with
-- NodeJs
+- Node.js
 - MongoDB
 - Mongoose
-- PassportJs
+- Passport.js
