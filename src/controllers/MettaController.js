@@ -3,12 +3,7 @@ const mongoose = require('mongoose');
 const Metta = mongoose.model('Metta');
 
 module.exports = {
-  async index(req, res) {
-
-    const mettas = await Metta.find();
-
-    return res.json(mettas);
-  },
+ 
 
   async store(req, res) {
     const metta = await Metta.create(req.body);

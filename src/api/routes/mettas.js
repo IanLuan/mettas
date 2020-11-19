@@ -1,12 +1,12 @@
 const express = require('express');
-const mettaRouter = express.Router();
+const router = express.Router();
 const mongoose = require('mongoose');
 
 const Metta = mongoose.model('Metta');
 
-mettaRouter.get('/', async (req, res) => {
+router.get('/', async (req, res) => {
   const mettas = await Metta.find();
   return res.json(mettas);
 });
 
-module.exports = mettaRouter;
+module.exports = router;

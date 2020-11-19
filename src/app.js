@@ -6,13 +6,15 @@ const requireDir = require('require-dir');
 
 // Iniciando App
 const app = express();
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(bodyParser.json());
 app.use(cors());
 
 // Iniciando DB
 mongoose.connect(
   'mongodb://localhost:27017/nodeapi', 
-  { useNewUrlParser: true, useUnifiedTopology: true }
+  { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true }
 );
 
 requireDir('./models');
