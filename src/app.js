@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const bodyParser = require("body-parser");
 const cors = require('cors');
 const requireDir = require('require-dir');
+require("dotenv-safe").config();
 
 // Iniciando App
 const app = express();

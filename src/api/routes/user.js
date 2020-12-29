@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
-const attachCurrentUser = require('../middlewares/attachCurrentUser');
+const isAuth = require('../middlewares/isAuth');
 
 const User = mongoose.model('User');
 
-router.get("/me", attachCurrentUser, async (req, res) => {
+router.get("/me", isAuth, async (req, res) => {
   try {
     // request.user is getting fetched from Middleware after token authentication
     const user = await User.findById(req.user.id);

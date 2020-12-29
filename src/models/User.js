@@ -23,6 +23,11 @@ const UserSchema = new Schema({
     unique: true
   },
 
+  facebookId: {
+    type: String,
+    unique: true
+  },
+
   mettas: [{
     type: Schema.Types.ObjectId,
     ref: 'Metta'

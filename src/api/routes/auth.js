@@ -4,7 +4,6 @@ const mongoose = require('mongoose');
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { check, validationResult } = require("express-validator");
-const attachCurrentUser = require('../middlewares/attachCurrentUser');
 
 const User = mongoose.model('User');
 
@@ -32,6 +31,7 @@ router.post(
           email,
           password,
       } = req.body;
+
       try {
           let user = await User.findOne({
               email
@@ -61,7 +61,7 @@ router.post(
 
           jwt.sign(
               payload,
-              "randomString", {
+              process.env.TOKEN_SECRET, {
                   expiresIn: 10000
               },
               (err, token) => {
@@ -120,7 +120,7 @@ router.post(
 
         jwt.sign(
           payload,
-          "randomString",
+          process.env.TOKEN_SECRET,
           {
             expiresIn: 3600
           },
@@ -139,15 +139,5 @@ router.post(
       }
     }
 );
-
-router.get("/me", attachCurrentUser, async (req, res) => {
-  try {
-    // request.user is getting fetched from Middleware after token authentication
-    const user = await User.findById(req.user.id);
-    res.json(user);
-  } catch (e) {
-    res.send({ message: "Error in Fetching user" });
-  }
-});
 
 module.exports = router;
