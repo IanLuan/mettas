@@ -6,11 +6,17 @@ The backend for Mettas app.
 - MongoDB
 - Mongoose
 
+## ToDo
+ - [ ] Create Share Endpoints
+ - [ ] Create Endpoint for update and delete a user
+ - [ ] Add Firebase Admin Auth for google and facebook auth
+ - [ ] Create a demo app/web app to consume this API
+
 ## API Endpoints
 
 #### Metta Endpoints
 | METHOD | ENDPOINT |  USAGE | RETURNS |
-|--|--|--|--|
+|:--|:--|:--|:--|
 | GET | `/me/mettas` | Get a List of a User's Mettas | mettas |
 | POST | `/me/mettas` | Create a Metta | - |
 | GET | `/mettas/{metta_id}` | Get a Metta | metta |
@@ -25,7 +31,7 @@ The backend for Mettas app.
 
 #### Auth Endpoints
 | METHOD | ENDPOINT |  USAGE | RETURNS |
-|--|--|--|--|
+|:--|:--|:--|:--|
 | POST | `/signup` | Register a User | token |
 | POST | `/signin` | Authenticate a User | token |
 
@@ -33,5 +39,5 @@ The backend for Mettas app.
 
 #### User Endpoints
 | METHOD | ENDPOINT |  USAGE | RETURNS |
-|--|--|--|--|
+|:--|:--|:--|:--|
 | POST | `/me` | Get Current user | user |
