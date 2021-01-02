@@ -11,7 +11,8 @@ router.get("/me/mettas", isAuth, async (req, res) => {
 
   User.findById(req.user.id)
   .populate({
-  path: 'mettas',
+    path: 'mettas',
+    match: { _id: req.params.mettaId },
   })
   .exec(function(err, result) {
     if(err){
@@ -25,13 +26,15 @@ router.get("/me/mettas", isAuth, async (req, res) => {
   })
 
   } catch(err) {
-    res.status(500).send({ message: err.message })
+    res.status(500).json({
+      success: false,
+      message: err.message
+    })
   }
 });
 
 
 router.post("/me/mettas", isAuth, async (req, res) => {
-
   try {
     const user = await User.findById(req.user.id);
 
@@ -83,11 +86,10 @@ router.post("/me/mettas", isAuth, async (req, res) => {
 
 router.get("/mettas/:mettaId", isAuth, async (req, res) => {
   try {
-
    User.findById(req.user.id)
    .populate({
-    path: 'mettas',
-    match: { _id: req.params.mettaId },
+      path: 'mettas',
+      match: { _id: req.params.mettaId },
     })
     .exec(function(err, result) {
       if(err){
@@ -101,14 +103,44 @@ router.get("/mettas/:mettaId", isAuth, async (req, res) => {
     })
 
   } catch (err) {
-    res.status(500).send(err.message);
+    res.status(500).json({
+      success: false,
+      message: err.message
+    })
+  }
+});
+
+
+router.put("/mettas/:mettaId", isAuth, async (req, res) => {
+  try {
+    let id = req.body._id;
+    delete req.body._id;
+
+    Metta.update(
+      {"_id": id },
+      req.body,
+      function (err, result) {
+        if(err) {
+          res.status(500).json({
+            success: false,
+            message: err.message
+          })
+        } else {
+          res.json(result);
+        }
+    });
+
+  } catch(err) {
+    res.status(500).json({
+      success: false,
+      message: err.message
+    })
   }
 });
 
 
 router.delete("/mettas/:mettaId", isAuth, async (req, res) => {
   try {
-
     Metta.findOneAndRemove({ _id: req.params.mettaId }, function (err, result) {
       if (err) {
         res.status(500).json({
@@ -131,11 +163,13 @@ router.delete("/mettas/:mettaId", isAuth, async (req, res) => {
     })}});
     
   } catch (err) {
-    res.status(500).send(err.message);
+    res.status(500).json({
+      success: false,
+      message: err.message
+    })
   }
 
 });
-
 
 
 module.exports = router;

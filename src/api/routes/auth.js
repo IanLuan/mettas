@@ -27,9 +27,9 @@ router.post(
       }
 
       const {
-          name,
-          email,
-          password,
+        name,
+        email,
+        password,
       } = req.body;
 
       try {
