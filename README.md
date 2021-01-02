@@ -1,7 +1,7 @@
 # Mettas Backend
 The backend for Mettas app.
 
-### Made with
+## Made with
 - Node.js
 - MongoDB
 - Mongoose
