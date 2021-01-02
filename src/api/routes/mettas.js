@@ -64,21 +64,21 @@ router.post("/me/mettas", isAuth, async (req, res) => {
           message: err.message
         })
       } else {
-        user.mettas.push(mettaDoc.id);
 
-        user.save(function (err) {
-          if(err) {
-            res.status(500).json({
-              success: false,
-              message: err.message
-            })
-          } else {
-            res.status(200).json({
-              success: true,
-              message: "success"
-            })
-    }})}});
-
+        user.updateOne(
+          { "$push": { "mettas": mettaDoc.id } },
+          function (err, result){
+            if (err) {
+              res.status(500).json({
+                success: false,
+                message: err.message,
+              })
+            } else {
+              res.json(result);
+            }
+          }
+        );
+    }});
   } catch (err) {
     console.log(err.message)
     res.status(500).send(err.message);

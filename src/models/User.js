@@ -26,7 +26,7 @@ const UserSchema = new Schema({
 
   mettas: [{
     type: Schema.Types.ObjectId,
-    ref: 'Metta'
+    ref: 'Metta',
   }],
 
   invites: [invite],

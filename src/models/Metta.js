@@ -10,10 +10,12 @@ const MettaSchema = new Schema({
   },
 
   guests: [{
-    _id: Schema.Types.ObjectId,
-    name: String,
-    picture: String,
-    email: String
+    type: new Schema({ 
+      _id: Schema.Types.ObjectId,
+      name: String,
+      picture: String,
+      email: String
+    }),
   }],
 
   title: {
