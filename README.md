@@ -42,4 +42,5 @@ The backend for Mettas app.
 #### User Endpoints
 | METHOD | ENDPOINT |  USAGE | RETURNS |
 |:--|:--|:--|:--|
-| POST | `/me` | Get Current user | user |
+| GET | `/me` | Get Current user | user |
+| POST | `/me` | Get Current user | - |
