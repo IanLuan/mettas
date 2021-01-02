@@ -8,7 +8,7 @@ The backend for Mettas app.
 - Mongoose
 
 ## ToDo
- - [ ] Create Invite Endpoints
+ - [X] Create Invite Endpoints
  - [X] Create Endpoint for update user
  - [ ] Create Search Endpoints (search metta by full text and user by email)
  - [ ] Add Firebase Admin Auth for google and facebook auth
@@ -19,7 +19,7 @@ The backend for Mettas app.
 #### Metta Endpoints
 | METHOD | ENDPOINT |  USAGE | RETURNS |
 |:--|:--|:--|:--|
-| GET | `/me/mettas` | Get a List of a User's Mettas | mettas |
+| GET | `/me/mettas` | Get a List of Current User's Mettas | mettas |
 | POST | `/me/mettas` | Create a Metta | - |
 | GET | `/mettas/{metta_id}` | Get a Metta | metta |
 | PUT | `/mettas/{metta_id}` | Change a Metta's Details | - |
@@ -28,6 +28,16 @@ The backend for Mettas app.
 | POST | `/mettas/{metta_id}/transactions` | Add Transaction to a Metta | - |
 | GET | `/mettas/{metta_id}/transactions/{transaction_id}` | Get a Transaction | transaction |
 | DELETE | `/mettas/{metta_id}/transactions/{transaction_id}` | Remove a Transaction from Metta | - |
+
+#
+
+#### Invite Endpoints (for Metta sharing)
+| METHOD | ENDPOINT |  USAGE | RETURNS |
+|:--|:--|:--|:--|
+| GET | `/me/invites` | Get a List of Invites for Current User | invites |
+| POST | `/invites/{metta_id}/{guest_id}` | Invite a user to the Metta | - |
+| POST | `/invites/{invite_id}` | Accept an Invite | - |
+| DELETE | `/invites/{invite_id}` | Reject an Invite | - |
 
 #
 
