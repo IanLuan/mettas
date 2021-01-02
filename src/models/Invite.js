@@ -5,19 +5,16 @@ const InviteSchema = new Schema({
 
   host: {
     type: Schema.Types.ObjectId,
-    ref: 'User',
     required: true,
   },
 
   guest: {
     type: Schema.Types.ObjectId,
-    ref: 'User',
     required: true,
   },
 
   metta: {
     type: Schema.Types.ObjectId,
-    ref: 'Metta',
     required: true,
   },
 

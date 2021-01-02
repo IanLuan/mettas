@@ -1,11 +1,17 @@
 const mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
+const invite = require('./Invite');
+
 const UserSchema = new Schema({
 
   name: {
     type: String,
     required: true
+  },
+
+  picture: {
+    type: String
   },
 
   email: {
@@ -18,25 +24,12 @@ const UserSchema = new Schema({
     type: String,
   },
 
-  googleId: {
-    type: String,
-    unique: true
-  },
-
-  facebookId: {
-    type: String,
-    unique: true
-  },
-
   mettas: [{
     type: Schema.Types.ObjectId,
     ref: 'Metta'
   }],
 
-  invites: [{
-    type: Schema.Types.ObjectId,
-    ref: 'Invite'
-  }],
+  invites: [invite],
 
   createdAt: {
     type: Date,
@@ -44,4 +37,4 @@ const UserSchema = new Schema({
   }
 });
 
-mongoose.model("User", UserSchema);
+module.exports = mongoose.model("User", UserSchema);

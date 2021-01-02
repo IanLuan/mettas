@@ -1,17 +1,19 @@
 const mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+const transaction = require('./Transaction')
 
 const MettaSchema = new Schema({
 
   user: {
     type: Schema.Types.ObjectId,
-    ref: 'User',
     required: true,
   },
 
   guests: [{
-    type: Schema.Types.ObjectId,
-    ref: 'User'
+    _id: Schema.Types.ObjectId,
+    name: String,
+    picture: String,
+    email: String
   }],
 
   title: {
@@ -34,10 +36,7 @@ const MettaSchema = new Schema({
     required: true,
   },
 
-  transactions: [{
-    type: Schema.Types.ObjectId,
-    ref: 'Transaction'
-  }],
+  transactions: [transaction],
 
   createdAt: {
     type: Date,

@@ -4,13 +4,14 @@ var Schema = mongoose.Schema;
 const TransactionSchema = new Schema({
 
   user: {
-    type: Schema.Types.ObjectId,
-    ref: 'User'
+    _id: Schema.Types.ObjectId,
+    name: String,
+    picture: String,
+    email: String
   },
 
   metta: {
     type: Schema.Types.ObjectId,
-    ref: 'Metta'
   },
 
   value: {
