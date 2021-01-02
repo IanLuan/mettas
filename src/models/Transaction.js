@@ -10,10 +10,6 @@ const TransactionSchema = new Schema({
     email: String
   },
 
-  metta: {
-    type: Schema.Types.ObjectId,
-  },
-
   value: {
     type: Number,
     required: true
