@@ -9,7 +9,7 @@ The backend for Mettas app.
 
 ## ToDo
  - [ ] Create Invite Endpoints
- - [ ] Create Endpoint for update and delete a user
+ - [X] Create Endpoint for update user
  - [ ] Create Search Endpoints (search metta by full text and user by email)
  - [ ] Add Firebase Admin Auth for google and facebook auth
  - [ ] Create a demo app/web app to consume this API
