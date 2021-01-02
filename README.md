@@ -8,8 +8,9 @@ The backend for Mettas app.
 - Mongoose
 
 ## ToDo
- - [ ] Create Share Endpoints
+ - [ ] Create Invite Endpoints
  - [ ] Create Endpoint for update and delete a user
+ - [ ] Create Search Endpoints (search metta by full text and user by email)
  - [ ] Add Firebase Admin Auth for google and facebook auth
  - [ ] Create a demo app/web app to consume this API
 
