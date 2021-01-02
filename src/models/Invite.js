@@ -4,18 +4,28 @@ var Schema = mongoose.Schema;
 const InviteSchema = new Schema({
 
   host: {
-    type: Schema.Types.ObjectId,
-    required: true,
+    type: new Schema({ 
+      _id: Schema.Types.ObjectId,
+      name: String,
+      picture: String,
+      email: String
+    }),
+    required: true
   },
 
   guest: {
     type: Schema.Types.ObjectId,
-    required: true,
+    required: true
   },
 
   metta: {
-    type: Schema.Types.ObjectId,
-    required: true,
+    type: new Schema({ 
+      _id: Schema.Types.ObjectId,
+      title: String,
+      description: String,
+      metta: String,
+    }),
+    required: true
   },
 
   createdAt: {

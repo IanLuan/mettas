@@ -115,22 +115,30 @@ router.get("/mettas/:mettaId", isAuth, async (req, res) => {
 
 router.put("/mettas/:mettaId", isAuth, async (req, res) => {
   try {
-    let id = req.body._id;
     delete req.body._id;
 
-    Metta.update(
-      {"_id": id },
-      req.body,
-      function (err, result) {
-        if(err) {
-          res.status(500).json({
-            success: false,
-            message: err.message
-          })
-        } else {
-          res.json(result);
-        }
-    });
+    const metta = await Metta.findById(req.params.mettaId);
+
+    // alterar para liberar update feito pelos guests
+    if(metta.user == req.user.id) {
+      metta.updateOne(
+        req.body,
+        function (err, result) {
+          if(err) {
+            res.status(500).json({
+              success: false,
+              message: err.message
+            })
+          } else {
+            res.json(result);
+          }
+      });
+    } else {
+      res.status(500).json({
+        success: false,
+        message: "Not authorized",
+      })
+    }
 
   } catch(err) {
     res.status(500).json({
@@ -143,26 +151,37 @@ router.put("/mettas/:mettaId", isAuth, async (req, res) => {
 
 router.delete("/mettas/:mettaId", isAuth, async (req, res) => {
   try {
-    Metta.findOneAndRemove({ _id: req.params.mettaId }, function (err, result) {
-      if (err) {
-        res.status(500).json({
-          success: false,
-          message: err.message
-        })
-      } else {
-        User.update(
-          { "_id": req.user.id },
-          { "$pull": { "mettas": req.params.mettaId } },
-          function (err, result){
-            if (err) {
-              res.status(500).json({
-                success: false,
-                message: err.message
-              })
-            } else {
-              res.json(result);
+    const metta = await Metta.findById(req.params.mettaId);
+
+    if(metta.user == req.user.id) {
+      Metta.findOneAndRemove({ _id: req.params.mettaId }, function (err, result) {
+        if (err) {
+          res.status(500).json({
+            success: false,
+            message: err.message
+          })
+        } else {
+          User.updateOne(
+            { "_id": req.user.id },
+            { "$pull": { "mettas": req.params.mettaId } },
+            function (err, result){
+              if (err) {
+                res.status(500).json({
+                  success: false,
+                  message: err.message
+                })
+              } else {
+                res.json(result);
+              }
             }
-    })}});
+          )
+        }});
+    } else {
+      res.status(500).json({
+        success: false,
+        message: "Not authorized",
+      })
+    }
     
   } catch (err) {
     res.status(500).json({
@@ -179,6 +198,8 @@ router.delete("/mettas/:mettaId", isAuth, async (req, res) => {
 router.get("/mettas/:mettaId/transactions", isAuth, async (req, res) => {
   try {
     const metta = await Metta.findById(req.params.mettaId);
+
+    // TODO restrict this action to user and guests only
     res.json(metta.transactions);
 
   } catch (err) {
@@ -193,6 +214,8 @@ router.get("/mettas/:mettaId/transactions", isAuth, async (req, res) => {
 router.post("/mettas/:mettaId/transactions", isAuth, async (req, res) => {
   try {
     const metta = await Metta.findById(req.params.mettaId);
+
+    // TODO restrict this action to user and guests only
     const userDoc = await User.findById(metta.user);
 
     const user = {
@@ -209,7 +232,7 @@ router.post("/mettas/:mettaId/transactions", isAuth, async (req, res) => {
       value
     })
 
-    metta.update(
+    metta.updateOne(
       { "$push": { "transactions": transaction }, 'amount': metta.amount + value },
       function (err, result){
         if (err) {
@@ -233,9 +256,11 @@ router.post("/mettas/:mettaId/transactions", isAuth, async (req, res) => {
 
 router.get("/mettas/:mettaId/transactions/:transactionId", isAuth, async (req, res) => {
   try {
-  
     const metta = await Metta.findById(req.params.mettaId);
+
+    // TODO restrict this action to user and guests only
     const transactions = metta.transactions.filter(element => element._id == req.params.transactionId);
+    
     res.json(transactions[0]);
 
   } catch (err) {
@@ -250,6 +275,9 @@ router.get("/mettas/:mettaId/transactions/:transactionId", isAuth, async (req, r
 router.delete("/mettas/:mettaId/transactions/:transactionId", isAuth, async (req, res) => {
   try {
     const metta = await Metta.findById(req.params.mettaId);
+    
+    // TODO restrict this action to metta creator or transaction creator
+
     const transaction = metta.transactions.filter(element => element._id == req.params.transactionId)[0];
     const value = transaction.value;
 
@@ -275,7 +303,8 @@ router.delete("/mettas/:mettaId/transactions/:transactionId", isAuth, async (req
       message: err.message,
     })
   }
-})
+});
+
 
 
 module.exports = router;
