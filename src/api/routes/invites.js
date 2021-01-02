@@ -4,7 +4,6 @@ const mongoose = require('mongoose');
 const isAuth = require('../middlewares/isAuth');
 let ObjectId = mongoose.Types.ObjectId; 
 
-
 const User = mongoose.model('User');
 const Metta = mongoose.model('Metta');
 const Invite = mongoose.model('Invite');
