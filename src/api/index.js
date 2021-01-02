@@ -4,7 +4,7 @@ const mettaRouter = require('./routes/mettas');
 const authRouter = require('./routes/auth');
 const userRouter = require('./routes/user');
 
-routes.use('/mettas', mettaRouter);
+routes.use(mettaRouter);
 routes.use('/auth', authRouter);
 routes.use('/users', userRouter);
 
