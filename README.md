@@ -10,14 +10,14 @@ The backend for Mettas app.
 ## ToDo
  - [X] Create Invite Endpoints
  - [X] Create Endpoint for update user
- - [ ] Create Search Endpoints (search metta by full text and user by email)
+ - [X] Create Search Endpoints (search metta by full text and user by email)
  - [ ] Add Firebase Admin Auth for google and facebook auth
  - [ ] Create a demo app/web app to consume this API
 
 ## API Endpoints
 
 #### Metta Endpoints
-| METHOD | ENDPOINT |  USAGE | RETURNS |
+| METHOD | ENDPOINT | USAGE | RETURNS |
 |:--|:--|:--|:--|
 | GET | `/me/mettas` | Get a List of Current User's Mettas | mettas |
 | POST | `/me/mettas` | Create a Metta | - |
@@ -32,7 +32,7 @@ The backend for Mettas app.
 #
 
 #### Invite Endpoints (for Metta sharing)
-| METHOD | ENDPOINT |  USAGE | RETURNS |
+| METHOD | ENDPOINT | USAGE | RETURNS |
 |:--|:--|:--|:--|
 | GET | `/me/invites` | Get a List of Invites for Current User | invites |
 | POST | `/invites/{metta_id}/{guest_id}` | Invite a user to the Metta | - |
@@ -42,7 +42,7 @@ The backend for Mettas app.
 #
 
 #### Auth Endpoints
-| METHOD | ENDPOINT |  USAGE | RETURNS |
+| METHOD | ENDPOINT | USAGE | RETURNS |
 |:--|:--|:--|:--|
 | POST | `/signup` | Register a User | token |
 | POST | `/signin` | Authenticate a User | token |
@@ -50,7 +50,19 @@ The backend for Mettas app.
 #
 
 #### User Endpoints
-| METHOD | ENDPOINT |  USAGE | RETURNS |
+| METHOD | ENDPOINT | USAGE | RETURNS |
 |:--|:--|:--|:--|
 | GET | `/me` | Get Current user | user |
 | POST | `/me` | Update Current user | - |
+
+#
+
+#### Search Endpoint
+| METHOD | ENDPOINT | USAGE | RETURNS |
+|:--|:--|:--|:--|
+| GET | `/search` | Search users by email and metta by keywords. | user or metta |
+
+| QUERY PARAMETER | TYPE | USAGE | REQUIRED
+|:--|:--|:--|:--|
+| q | `STRING` | Search query keywords and optional field filters and operators. For example: `q=car`. | Required |
+| type | `STRING` | Item type to search across. Valid types are: `metta`, `user`.  | Required |
