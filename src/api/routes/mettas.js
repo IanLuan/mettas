@@ -194,7 +194,6 @@ router.delete("/mettas/:mettaId", isAuth, async (req, res) => {
 
 // TRANSACTIONS ENDPOINTS
 
-
 router.get("/mettas/:mettaId/transactions", isAuth, async (req, res) => {
   try {
     const metta = await Metta.findById(req.params.mettaId);

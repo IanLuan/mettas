@@ -4,7 +4,6 @@ const Metta = mongoose.model('Metta');
 
 module.exports = {
  
-
   async store(req, res) {
     const metta = await Metta.create(req.body);
 
