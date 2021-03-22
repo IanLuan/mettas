@@ -60,9 +60,9 @@ The backend for Mettas app.
 #### Search Endpoint
 | METHOD | ENDPOINT | USAGE | RETURNS |
 |:--|:--|:--|:--|
-| GET | `/search` | Search users by email and metta by keywords. | user or metta |
+| GET | `/search` | Search users by email or metta by keywords. | user or metta |
 
 | QUERY PARAMETER | TYPE | USAGE | REQUIRED
 |:--|:--|:--|:--|
-| q | `STRING` | Search query keywords and optional field filters and operators. For example: `q=car`. | Required |
+| q | `STRING` | Search query keywords. For example: `q=car`. `q=julia` | Required |
 | type | `STRING` | Item type to search across. Valid types are: `metta`, `user`.  | Required |
