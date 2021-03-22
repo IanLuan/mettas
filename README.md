@@ -64,5 +64,5 @@ The backend for Mettas app.
 
 | QUERY PARAMETER | TYPE | USAGE | REQUIRED
 |:--|:--|:--|:--|
-| q | `STRING` | Search query keywords. For example: `q=car`. `q=julia` | Required |
+| q | `STRING` | Search query keywords. For example: `q=car`, `q=julia`, `q=ianluan13@gma` | Required |
 | type | `STRING` | Item type to search across. Valid types are: `metta`, `user`.  | Required |
